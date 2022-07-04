@@ -33,3 +33,6 @@ app.use((err, req, res, next) => {
 app.listen(Port, () => {
   console.log(`Server is Running on Port ${Port} `);
 });
+
+const d = new Date();
+console.log(d.toDateString());

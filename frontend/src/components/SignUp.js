@@ -156,7 +156,7 @@ const SignUp = () => {
             Register
           </Button>
           <br></br>
-          <Link to="/">Already have an Account ?</Link>
+          <Link to="/">Already have an Account</Link>
         </div>
       </Form>
       <ToastContainer />

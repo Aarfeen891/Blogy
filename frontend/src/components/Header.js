@@ -23,7 +23,7 @@ const Header = () => {
       {!localStorage.getItem("token") ? (
         <Navbar bg="dark" variant="dark">
           <Container fluid>
-            <Navbar.Brand href="#">Blogs</Navbar.Brand>
+            <Navbar.Brand>BLOGY</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
@@ -44,9 +44,7 @@ const Header = () => {
       ) : (
         <div class="fluid">
           <Navbar bg="dark" variant="dark" expand="lg">
-            <Navbar.Brand>
-              <Link to="#">BlogApp </Link>
-            </Navbar.Brand>
+            <Navbar.Brand>BLOGY</Navbar.Brand>
 
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
@@ -66,6 +64,7 @@ const Header = () => {
                 </Nav.Link>
 
                 <Nav.Link
+                  style={{ color: "white" }}
                   onClick={() => {
                     localStorage.clear();
                     // setAuth(null);

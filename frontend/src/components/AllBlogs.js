@@ -6,12 +6,17 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { allBlog } from "../reducer/blogsReducer";
 import { updateData } from "../reducer/blogsReducer";
+import { set } from "mongoose";
 
 const AllBlogs = () => {
   const [blogs, setBlogs] = useState("");
   const [del, setDel] = useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const now = new Date().toDateString();
+  console.log(now);
 
   const featchNotes = async () => {
     const { data } = await axios.get("/api/blog/all");
@@ -45,48 +50,71 @@ const AllBlogs = () => {
             </Button>
           </Link>
         </div>
-        <br />
-        <br />
-        {blogs &&
-          blogs.blogs.map((data) => {
-            return (
-              <Card
-                className="border-dark"
-                style={{ width: "18rem", marginTop: "15px" }}
-              >
-                <Card.Img variant="top" src={data.image} />
-                <Card.Body>
-                  <Card.Title>{data.title}</Card.Title>
-                  <Card.Text>{data.description}</Card.Text>
-                  {localStorage.getItem("id").split('"').join("") ===
-                    data.user._id && (
-                    <>
-                      <Button
-                        className="btn-primary "
-                        onClick={() =>
-                          update(
-                            data._id,
-                            data.title,
-                            data.description,
-                            data.image
-                          )
-                        }
-                      >
-                        Edit
-                        {/* <AiFillEdit /> */}
-                      </Button>
-                      <Button
-                        className="btn-danger ml-2 "
-                        onClick={() => deletehan(data._id)}
-                      >
-                        Delete
-                      </Button>
-                    </>
-                  )}
-                </Card.Body>
-              </Card>
-            );
-          })}
+      </div>
+      <br />
+      <br />
+      <div className="container mb-5">
+        <div className="d-flex flex-row flex-wrap justify-content-center ">
+          {blogs &&
+            blogs.blogs.map((data) => {
+              return (
+                <div>
+                  <Card
+                    style={{
+                      width: "18rem",
+                      marginLeft: "20px",
+                      marginBottom: "15px",
+                      border: "2px solid black",
+                    }}
+                  >
+                    <Card.Img
+                      style={{ height: "180px" }}
+                      variant="top"
+                      src={data.image}
+                    />
+                    <Card.Body>
+                      <div>
+                        <Card.Title>{data.title}</Card.Title>
+
+                        <Card.Text>{`${data.description.slice(
+                          0,
+                          150
+                        )}....`}</Card.Text>
+                      </div>
+                      {localStorage.getItem("id").split('"').join("") ===
+                        data.user._id && (
+                        <div>
+                          <Button
+                            className="btn-primary  "
+                            onClick={() =>
+                              update(
+                                data._id,
+                                data.title,
+                                data.description,
+                                data.image
+                              )
+                            }
+                          >
+                            Edit
+                            {/* <AiFillEdit /> */}
+                          </Button>
+                          <Button
+                            className="btn-danger ml-2  "
+                            onClick={() => deletehan(data._id)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      )}
+                      <p class="badge badge-dark">
+                        {new Date(data.createdAt).toDateString()}
+                      </p>
+                    </Card.Body>
+                  </Card>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </>
   );

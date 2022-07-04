@@ -70,3 +70,5 @@ while (check) {
     i = i + 1;
   }
 }
+
+console.log(x);

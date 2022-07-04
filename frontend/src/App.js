@@ -9,14 +9,13 @@ import AddBlogs from "./components/AddBlogs";
 import AllBlogs from "./components/AllBlogs";
 import UpdateBlog from "./components/UpdateBlog";
 import MyBlogs from "./components/MyBlogs";
-import P from "./components/P";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
         <Header />
-        {/* <P /> */}
+
         <Routes>
           <Route path="/" element={<LoginPage />} />
 
